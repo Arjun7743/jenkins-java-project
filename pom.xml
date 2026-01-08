@@ -13,7 +13,6 @@
     <name>Java Home myweb</name>
     <url>http://maven.apache.org</url>
 
-    <!-- Compiler & project properties -->
     <properties>
         <docker.image.prefix>kammana</docker.image.prefix>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,17 +47,10 @@
         </repository>
     </distributionManagement>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>maven1</id>
-            <name>Maven.org</name>
-            <url>http://repo1.maven.org/maven2</url>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <!-- 🔥 CRITICAL FIX: override old compiler plugin -->
     <build>
         <plugins>
+
+            <!-- ✅ Java 17 compatible compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -68,6 +60,14 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <!-- 🔥 CRITICAL FIX: Java 17 compatible WAR plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+
         </plugins>
     </build>
 
